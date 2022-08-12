@@ -51,18 +51,13 @@ SLF4J la facade, et deux frameworks qui implémentent l'interface slf4j
 ```
     <dependency>
         <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-core</artifactId>
-        <version>1.2.6</version>
-    </dependency>
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>1.7.30</version>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
-        <version>1.2.6</version>
+        <version>1.3.0-beta0</version>
     </dependency>
+```
+logback-classic inclue à la fois ``slf4j`` et ``logback-core``.
+```
+[INFO] \- ch.qos.logback:logback-classic:jar:1.3.0-beta0:compile
+[INFO]    +- ch.qos.logback:logback-core:jar:1.3.0-beta0:compile
+[INFO]    \- org.slf4j:slf4j-api:jar:2.0.0-beta1:compile
 ```

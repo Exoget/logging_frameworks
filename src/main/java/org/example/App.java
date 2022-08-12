@@ -1,18 +1,18 @@
 package org.example;
 
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Hello world!
  *
  */
-@SpringBootApplication
+
 public class App {
 
+    static final Logger logger = LoggerFactory.getLogger(App.class);
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        logger.info(" this is an info msg ... !");
     }
 
 }
