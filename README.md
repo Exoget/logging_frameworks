@@ -61,3 +61,10 @@ logback-classic inclue à la fois ``slf4j`` et ``logback-core``.
 [INFO]    +- ch.qos.logback:logback-core:jar:1.3.0-beta0:compile
 [INFO]    \- org.slf4j:slf4j-api:jar:2.0.0-beta1:compile
 ```
+
+#### Niveau de log
+A Logger has a Level, which can be set either via ``configuration`` or with ``Logger.setLevel()``. Setting the level in code overrides configuration files.
+
+The possible levels are, in order of precedence: ``TRACE, DEBUG, INFO, WARN and ERROR``. Each level has a corresponding method that we use to log a message at that level.
+
+If a Logger isn't explicitly assigned a level, it inherits the level of its closest ancestor. The root logger defaults to DEBUG. We'll see how to override this below.
