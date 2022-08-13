@@ -15,8 +15,12 @@ public class ParentLog {
     static final Logger parentLogger = (Logger) LoggerFactory.getLogger("org.example.logger.context");
 
     public ParentLog() {
-        // we can set log level programmatically or with xml configuration.
-        // setLevel is not available with slf4j, that's why we use Logger from logback directly
+        /**
+         * we can set log level programmatically or with xml configuration.
+         * <logger name="org.example.logger.context" level="INFO" />
+         * <logger name="org.example.logger.context.subfolder" level="WARN" />
+         * The setLevel method is not available with slf4j, that's why we use Logger from logback directly.
+         */
         parentLogger.setLevel(Level.INFO);
         parentLogger.warn("This message is logged because WARN > INFO.");
         parentLogger.debug("This message is not logged because DEBUG < INFO.");

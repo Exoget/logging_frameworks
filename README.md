@@ -67,4 +67,58 @@ A Logger has a Level, which can be set either via ``configuration`` or with ``Lo
 
 The possible levels are, in order of precedence: ``TRACE, DEBUG, INFO, WARN and ERROR``. Each level has a corresponding method that we use to log a message at that level.
 
-If a Logger isn't explicitly assigned a level, it inherits the level of its closest ancestor. The root logger defaults to DEBUG. We'll see how to override this below.
+***If a Logger isn't explicitly assigned a level, it inherits the level of its closest ancestor ( also inherit the appender-ref from the root logger if the log is not defining a loger appender )***. 
+The root logger defaults to DEBUG.
+
+:point_right: **en gros si un log ne définie pas explicitement sa propre configuration : son level, appender, format de msg ( à travers le fichier logback.xml ou bien dans le code source ), 
+il va hériter cela de son log parent que ce soit niveau supérieur ou bien jusqu'à arriver au niveau root log.
+
+:point_right: remarque pour les appenders: Appenders are cumulative, cad si un logger possède un fileAppender et sont root logger utilise une console appender notre log va avoir les deux appender à la fois ** 
+
+on peut modifier ce comportement en utilisant le paramètre ``additivity`` à ``false``.
+```
+<logger name="com.baeldung.logback.tests" level="WARN" additivity="false" >
+<appender-ref ref="FILE" />
+</logger>
+
+<root level="debug">
+    <appender-ref ref="STDOUT" />
+</root>
+```
+>Setting additivity to false disables the default behavior. Tests won't log to the console, and neither will any of its descendants.
+#### Chargement de configuration
+A configuration file can be placed in the classpath and named either ``logback.xml`` or ``logback-test.xml``.
+
+Here's how Logback will attempt to find configuration data:
+1. Search for files named ``logback-test.xml``, ``logback.groovy``, or ``logback.xml`` in the classpath, in that order
+2. If the library doesn't find those files, it will attempt to use Java's ``ServiceLoader`` to locate an implementor of the ``com.qos.logback.classic.spi.Configurator``.
+3. Configure itself to log output directly to the console
+
+#### Troubleshooting Configuration
+1. on peut voir le chargement de la configuration logback si nous activons le mode debug dans le fichier de configuration.
+```
+logback.xml
+   <configuration debug="true">
+   ...
+   </configuration>
+```
+2. on peut avoir aussi des informations sur la configuration en activant un listener logback **StatusListener**.
+```
+ <configuration>
+ 
+   <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+   ...
+ </configuration>
+```
+
+3. on peut recharger le fichier de configuration ( en cas de changement ) pendant l'exécution de l'application.
+ ```
+ <configuration scan="true" scanPeriod="15 seconds">
+   ...
+ </configuration>
+ ```
+#### Appenders
+1. ConsoleAppender
+2. FileAppender
+3. RollingFileAppender (based on time, file size, or a combination of both)
+4. Custom Appenders ([voir exemple](https://www.baeldung.com/custom-logback-appender))

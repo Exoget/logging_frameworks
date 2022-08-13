@@ -12,7 +12,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="logging_frameworks" options="-parameters" />
+      <module name="logging_frameworks" options="" />
     </option>
   </component>
 </project>
