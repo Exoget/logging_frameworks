@@ -122,3 +122,25 @@ logback.xml
 2. FileAppender
 3. RollingFileAppender (based on time, file size, or a combination of both)
 4. Custom Appenders ([voir exemple](https://www.baeldung.com/custom-logback-appender))
+
+#### Layouts
+Layout fait le formatage de notre msg, il existe un layout par défaut le``PatternLayout``.
+
+Nous pouvons nous meme créer un layout customisé, mais normalement avec le``PatternLayout`` on peut tout faire.
+
+``Appender`` a besoin -> ``Encoder`` -> utilise un ``PatternLayout``.
+
+````
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+        <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+</appender>
+````
+``PatternLayout`` définie un [ensemble de conventions](https://logback.qos.ch/manual/layouts.html#conversionWord) pour le formatage de notre msg.
+
+* ``%d{HH:mm:ss.SSS}`` – a timestamp with hours, minutes, seconds and milliseconds
+* ``[%thread]`` – the thread name generating the log message, surrounded by square brackets
+* ``%-5level`` – the level of the logging event, padded to 5 characters
+* ``%logger{36}`` – the name of the logger, truncated to 35 characters
+* ``%msg%n`` – the log messages followed by the platform dependent line separator character
