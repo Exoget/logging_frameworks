@@ -11,7 +11,7 @@ Après, c'est à chaque framework de donner sa propre implementation.
 
 ## utilisation dans spring boot
 Il faut noter qu'à partir de la version 2 de spring boot, nous avons un framework de logging inclue par défaut.
-En effet, le starter ``spring-boot-starter-logging``.
+En effet, le starter ``spring-boot-starter-logging`` prepare le terrain pour nous en activant un framework de logging par défaut logback.
 #### Zero Configuration Logging ( from [baeldung's website](https://www.baeldung.com/spring-boot-logging/) )
 >Spring Boot is a very helpful framework. It allows us to forget about the majority of the configuration settings, many of which it opinionatedly auto-tunes.
 In the case of logging, the only mandatory dependency is Apache Commons Logging.
@@ -35,7 +35,7 @@ SLF4J la facade, et deux frameworks qui implémentent l'interface slf4j
 ```
 
 ##### Tous les frameworks partagent 3 notions globales :
-* loggers
+* loggers : c'est le context de log, il peut etre lié à une classe, un package.
 * appenders : destination de log (console, file, rolling file 'pour chaque jours', jdbc, jms, smtp ...)
 * layouts : prepare le format de msg
 
